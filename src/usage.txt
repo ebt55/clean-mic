@@ -1,0 +1,23 @@
+clean-mic: echo-cancelling microphone for the QuadCast (docs/design.md)
+
+  clean-mic devices
+      List playback and capture endpoints (opens no stream).
+
+  clean-mic live [--mic QuadCast] [--speakers NAME] [--seconds 180] [--out DIR]
+                 [--no-aec] [--no-rnnoise] [--wait-ms 20] [--bulk-delay-ms 0]
+      Record the mic and the default playback's loopback, cancel the echo,
+      write a run folder (default %LOCALAPPDATA%\clean-mic\runs\run-<time>)
+      and print ERLE, lag, drift, CPU and latency every 2 s.
+
+  clean-mic replay RUN_DIR [--out DIR] [--no-aec] [--no-rnnoise] [--wait-ms 20]
+                 [--bulk-delay-ms 0] [--quiet]
+      Re-run a recorded run folder through the chain.
+
+  clean-mic bench [--seconds 60]
+      CPU cost of the chain on a synthetic scene.
+
+  clean-mic wer [--passage docs/passages.md] [--span-from RAW.words.json] A.words.json ...
+      Word error rate of transcripts against the reading passage.
+
+  --bulk-delay-ms: positive delays the reference (Bluetooth or HDMI output),
+  negative delays the mic (a lookahead; adds that much latency).

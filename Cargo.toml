@@ -1,0 +1,25 @@
+[package]
+name = "clean-mic"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "MIT"
+repository = "https://github.com/ebt55/clean-mic"
+rust-version = "1.88"
+description = "Echo-cancelling microphone for Windows: removes the speakers' playback from the mic, using the playback as the reference"
+
+[dependencies]
+# FFTs of the echo canceller (src/aec.rs) and the lag estimator.
+realfft = "3.5"
+# RNNoise in Rust; the A/B measured 0.5.2.
+nnnoiseless = { version = "=0.5.2", default-features = false }
+hound = "3.5"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[target.'cfg(windows)'.dependencies]
+wasapi = "0.26"
+windows = { version = "0.61", features = ["Win32_System_Performance", "Win32_System_Threading", "Win32_System_Console", "Win32_Foundation"] }
+
+[profile.release]
+debug = "line-tables-only"
