@@ -1,0 +1,13 @@
+# Rust build output
+/target
+
+# Recordings and anything derived from them: never committed
+*.wav
+*.flac
+*.mp3
+*.m4a
+*.ogg
+*.opus
+*.words.json
+/runs
+/out
